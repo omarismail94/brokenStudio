@@ -2,15 +2,11 @@ import com.android.build.api.dsl.KotlinMultiplatformAndroidDeviceTestCompilation
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "omar.broken.producer"
-        compileSdk = 36
-        minSdk = 24
-    }
+    androidTarget()
 
     sourceSets {
         androidMain {
@@ -19,4 +15,9 @@ kotlin {
             }
         }
     }
+}
+
+android {
+    namespace = "omar.broken.producer"
+    compileSdk = 36
 }
