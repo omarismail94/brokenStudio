@@ -48,5 +48,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-**/local.properties
+local.properties
 .kotlin
