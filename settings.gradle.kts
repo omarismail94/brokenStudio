@@ -28,5 +28,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":consumer")
+//include(":consumer")
 include(":producer")

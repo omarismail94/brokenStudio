@@ -2,8 +2,8 @@ import com.android.build.api.dsl.KotlinMultiplatformAndroidDeviceTestCompilation
 
 plugins {
     id("maven-publish")
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
+    id("org.jetbrains.kotlin.multiplatform")
+    id("com.android.kotlin.multiplatform.library")
 }
 
 group = "omar.broken"

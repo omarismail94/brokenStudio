@@ -1,9 +1,7 @@
-import org.gradle.kotlin.dsl.register
-
 plugins {
     id("maven-publish")
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    id("org.jetbrains.kotlin.multiplatform")
+    id("com.android.library")
 }
 
 group = "omar.broken"
