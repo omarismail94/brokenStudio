@@ -1,4 +1,4 @@
-import omar.plugins.packageInspector
+import org.gradle.kotlin.dsl.register
 
 plugins {
     id("maven-publish")
@@ -8,15 +8,6 @@ plugins {
 
 group = "omar.broken"
 version = "1.0"
-
-configurations.register("inspectorJarProducer") {
-    isCanBeConsumed = true
-    isCanBeResolved = false
-
-    attributes {
-        attribute(Attribute.of("inspector", String::class.java), "inspectorJar")
-    }
-}
 
 kotlin {
     androidTarget {
@@ -43,6 +34,42 @@ android {
     }
 }
 
+abstract class CopyPublicResourcesDirTask : DefaultTask() {
+
+    @get:Inject abstract val fileSystemOperations: FileSystemOperations
+
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val buildSrcResDir: DirectoryProperty
+
+    @get:OutputDirectory abstract val outputFolder: DirectoryProperty
+
+    @TaskAction
+    fun copy() {
+        File(outputFolder.get().asFile.path).apply {
+            deleteRecursively()
+            mkdirs()
+            fileSystemOperations.copy {
+                from(buildSrcResDir)
+                into(this@apply)
+            }
+        }
+    }
+}
+
+
+val staticPublicXmlDirectory =  File(project.projectDir.parentFile , "buildSrc/res")
+
+val copyPublicResourcesDirTask =
+    project.tasks.register(
+        "generatePublicResourcesStub",
+        CopyPublicResourcesDirTask::class,
+    ) {
+        buildSrcResDir.set(staticPublicXmlDirectory)
+    }
+
 androidComponents {
-    beforeVariants(selector().withBuildType("debug")) { variant -> variant.enable = false }
+    onVariants(selector().all()) {
+            variant -> variant.sources.res?.addGeneratedSourceDirectory(copyPublicResourcesDirTask, CopyPublicResourcesDirTask::outputFolder)
+    }
 }

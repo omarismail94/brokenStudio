@@ -9,15 +9,9 @@ buildscript {
         }
         mavenCentral()
     }
-    dependencies {
-        classpath(libs.kotlinGradlePlugin)
-    }
 }
 
-apply(plugin = "kotlin")
-
 dependencies {
-    compileOnly(project.gradleKotlinDsl())
     implementation(libs.androidGradlePluginApi)
     implementation(libs.kotlinGradlePlugin)
     runtimeOnly(libs.androidLibraryPlugin)
