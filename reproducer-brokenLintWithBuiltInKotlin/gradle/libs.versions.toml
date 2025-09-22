@@ -1,0 +1,21 @@
+[versions]
+junitVersion = "4.13.2"
+kotlinVersion = "2.2.20"
+agpVersion = "9.0.0-alpha05"
+runtimeVersion = "1.9.1"
+glanceVersion = "1.1.1"
+
+[libraries]
+#androidGradlePluginApi = { module = "com.android.tools.build:gradle-api", version.ref = "agpVersion" }
+androidLibraryPlugin = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "agpVersion" }
+androidBuiltInKotlin = { module = "com.android.experimental.built-in-kotlin:com.android.experimental.built-in-kotlin.gradle.plugin", version.ref = "agpVersion" }
+composeCompilerPlugin = { module = "org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin", version.ref = "kotlinVersion" }
+kotlinAndroidPlugin = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlinVersion" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+
+
+junit = { module = "junit:junit", version.ref = "junitVersion" }
+runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
+glance = { group = "androidx.glance", name = "glance", version.ref = "glanceVersion" }
+
+
