@@ -1,0 +1,9 @@
+[versions]
+kotlinVersion = "2.2.21"
+agpVersion = "9.0.0-beta03"
+
+[libraries]
+androidGradlePluginApi = { module = "com.android.tools.build:gradle-api", version.ref = "agpVersion" }
+androidKotlinMultiplatform = { module = "com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin", version.ref = "agpVersion" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+
